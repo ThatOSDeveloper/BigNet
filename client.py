@@ -42,7 +42,7 @@ if __name__ == "__main__":
         print(body)
         
         # Prompt user for next action
-        action = input("\nEnter 'exit' to quit or press Enter to fetch the page again: ")
+        action = input("\nEnter 'exit' to quit, Enter 'change' to change webpages, press Enter to fetch the page again: ")
         if action.lower() == 'exit':
             break
         elif action.lower() == 'change':
