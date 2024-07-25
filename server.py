@@ -5,14 +5,9 @@ def read_index_bnet(file_path):
     with open(file_path, 'r') as file:
         return file.read()
 
-def handle_request(data):
+def handle_request():
     # Read content from index.bnet
-    content = read_index_bnet('index.bnet')
-    
-    # Prepare the HTTP response
-    response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n"
-    response += content
-    return response
+    return read_index_bnet('index.bnet')
 
 def start_server(host='0.0.0.0', port=8080):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -25,8 +20,10 @@ def start_server(host='0.0.0.0', port=8080):
         print(f"Connection from {addr}")
         request = client_socket.recv(1024).decode()
         print(f"Request received:\n{request}")
-        response = handle_request(request)
-        client_socket.sendall(response.encode())
+
+        # Handle request and send the raw content
+        content = handle_request()
+        client_socket.sendall(content.encode())
         client_socket.close()
 
 if __name__ == "__main__":
