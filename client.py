@@ -16,20 +16,13 @@ def fetch_page(ip, port=8080):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((ip, port))
     
-    # Send an HTTP GET request for the root path
-    request = "GET / HTTP/1.1\r\nHost: {}\r\n\r\n".format(ip)
-    client_socket.sendall(request.encode())
-    
-    # Receive the response from the server
+    # No HTTP request needed, just receive the raw text
     response = client_socket.recv(4096).decode()
-    
-    # Extract the plain text from the HTTP response
-    headers, body = response.split("\r\n\r\n", 1)
     
     # Close the connection
     client_socket.close()
     
-    return body
+    return response
 
 if __name__ == "__main__":
     ip = input("Enter the server IP address: ")
@@ -42,7 +35,7 @@ if __name__ == "__main__":
         print(body)
         
         # Prompt user for next action
-        action = input("\nEnter 'exit' to quit, Enter 'change' to change webpages, press Enter to fetch the page again: ")
+        action = input("\nEnter 'exit' to quit, Enter 'change' to change server IP, press Enter to fetch the page again: ")
         if action.lower() == 'exit':
             break
         elif action.lower() == 'change':
