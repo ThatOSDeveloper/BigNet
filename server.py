@@ -14,7 +14,7 @@ def handle_request(data):
     response += content
     return response
 
-def start_server(host=0.0.0.0, port=8080):
+def start_server(host='0.0.0.0', port=8080):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
     server_socket.listen(5)
