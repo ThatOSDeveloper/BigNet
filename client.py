@@ -1,5 +1,4 @@
 import socket
-import re
 from os import system, name
 
 # Define our clear function
@@ -16,7 +15,7 @@ def fetch_page(ip, port=8080):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((ip, port))
     
-    # No HTTP request needed, just receive the raw text
+    # Receive the response from the server
     response = client_socket.recv(4096).decode()
     
     # Close the connection
@@ -32,7 +31,7 @@ if __name__ == "__main__":
         body = fetch_page(ip)
         clear()
         # Print the page content directly
-        print(body)
+        print(f"Received content:\n{body}")  # Debug print
         
         # Prompt user for next action
         action = input("\nEnter 'exit' to quit, Enter 'change' to change server IP, press Enter to fetch the page again: ")
