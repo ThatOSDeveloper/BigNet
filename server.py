@@ -18,11 +18,10 @@ def start_server(host='0.0.0.0', port=8080):
     while True:
         client_socket, addr = server_socket.accept()
         print(f"Connection from {addr}")
-        request = client_socket.recv(1024).decode()
-        print(f"Request received:\n{request}")
-
+        
         # Handle request and send the raw content
         content = handle_request()
+        print(f"Sending content:\n{content}")  # Debug print
         client_socket.sendall(content.encode())
         client_socket.close()
 
