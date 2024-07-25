@@ -1,6 +1,16 @@
 import socket
 import re
-
+from os import system, name
+# define our clear function
+def clear():
+ 
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+ 
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
 def fetch_page(ip, path, port=8080):
     # Create a socket object and connect to the server
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,7 +42,7 @@ if __name__ == "__main__":
     while True:
         # Fetch and display the page data
         body = fetch_page(ip, '/')
-        
+        clear()
         # Print the page content directly
         print(body)
         
