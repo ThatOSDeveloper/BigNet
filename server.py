@@ -17,7 +17,6 @@ def start_server(host='0.0.0.0', port=8080):
 
     while True:
         client_socket, addr = server_socket.accept()
-        print(f"Connection from {addr}")
         
         # Handle request and send the raw content
         content = handle_request()
